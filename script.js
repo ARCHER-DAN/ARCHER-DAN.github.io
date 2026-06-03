@@ -17,6 +17,7 @@ const projects = [
         ],
         result: '已上线项目，Docker 容器化部署，提供在线问答体验',
         img: '',
+        video: 'images/名著导读/6月3日.mp4',
         demo: 'https://17b821.r18.vip.cpolar.cn',
         repo: 'https://github.com/ARCHER-DAN/mingzhu-daodu'
     },
@@ -33,7 +34,11 @@ const projects = [
         ],
         result: '完整落地从 Prompt 到视频的全自动化流程，Web + CLI 双模式',
         img: '',
-        video: 'images/short-video-demo.mp4',
+        videos: [
+            { src: 'images/AI 短视频自动生成平台/6月3日 (3).mp4', label: '🎬 演示录制' },
+            { src: 'images/AI 短视频自动生成平台/final.mp4', label: '🎥 成果视频' }
+        ],
+        video: 'images/AI 短视频自动生成平台/final.mp4',
         demo: '',
         repo: ''
     },
@@ -50,6 +55,7 @@ const projects = [
         ],
         result: 'Agent 工具调用率从约 50% 提升至接近 100%，消除 LLM 幻觉导致的业务误判',
         img: '',
+        video: 'images/客服系统/6月3日 (1).mp4',
         demo: '',
         repo: ''
     },
@@ -64,8 +70,10 @@ const projects = [
             '动态修改 workflow_api.json 节点参数实现 ComfyUI 自动化提交',
             'PyInstaller 单文件 EXE 打包（~100MB），处理 frozen 环境兼容性'
         ],
-        result: '完整可交付的 AI 翻唱桌面应用，一键启动 + 公网访问',
+        result: 'AI 翻唱桌面应用，一键启动 + 公网访问',
         img: '',
+        video: 'images/AI 翻唱系统/6月3日 (2).mp4',
+        audio: 'images/AI 翻唱系统/Result_20260603_175637_00001_.mp3',
         demo: '',
         repo: ''
     },
@@ -81,7 +89,7 @@ const projects = [
             '遗传算法参数优化 + Bash 编译部署流水线（编译→校验→归档全自动）'
         ],
         result: '策略合规通过 MQL5 Market 验证，18 套预设参数覆盖多种行情',
-        img: '',
+        img: 'images/ea交易/17.png',
         demo: '',
         repo: ''
     },
@@ -91,12 +99,12 @@ const projects = [
         desc: '基于 ComfyUI 的图像生成与风格化工作流系统，覆盖图片生成、角色一致性多视图、视频动画帧控制、LoRA 模型训练与调优。',
         tech: ['ComfyUI', 'LoRA', 'Python', 'Stable Diffusion'],
         features: [
-            'ComfyUI 工作流搭建（文生图、角色一致性多视图、视频动画帧控制）',
+            'ComfyUI 工作流搭建（文生图、角色一致性多视图）',
             'LoRA 模型训练与调优，适配多种风格与角色一致性需求',
             'Python 脚本实现批量生成与自动化后处理'
         ],
         result: '多套可复用的 ComfyUI 工作流，覆盖生成/一致性/动画三个方向',
-        img: '',
+        img: 'images/11.png',
         demo: '',
         repo: ''
     }
@@ -156,11 +164,34 @@ function renderProjects() {
                 ? `<div class="project-result">📈 成果：${p.result}</div>`
                 : '';
 
-            const videoHtml = p.video
-                ? `<div class="project-video">
+            let videoHtml = '';
+            if (p.videos && p.videos.length) {
+                videoHtml = p.videos.map(v => `
+                    <div class="project-video">
+                        <p style="margin-bottom:0.3rem;font-weight:500;">${v.label}</p>
+                        <video controls style="width:100%;max-width:600px;border-radius:10px;">
+                            <source src="${v.src}" type="video/mp4">
+                        </video>
+                    </div>
+                `).join('');
+            } else if (p.video) {
+                videoHtml = `<div class="project-video">
                        <video controls style="width:100%;max-width:600px;border-radius:10px;">
                            <source src="${p.video}" type="video/mp4">
                        </video>
+                   </div>`;
+            }
+
+            const imgHtml = p.img
+                ? `<div class="project-video"><img src="${p.img}" alt="${p.name}" style="width:100%;max-width:600px;border-radius:10px;"></div>`
+                : '';
+
+            const audioHtml = p.audio
+                ? `<div class="project-video" style="margin-bottom:1rem;">
+                       <p style="margin-bottom:0.4rem;font-weight:500;">🎵 AI 翻唱试听：</p>
+                       <audio controls style="width:100%;max-width:600px;">
+                           <source src="${p.audio}" type="audio/mpeg">
+                       </audio>
                    </div>`
                 : '';
 
@@ -179,6 +210,8 @@ function renderProjects() {
                 <p class="project-desc" style="margin-bottom:1rem;">${p.desc}</p>
                 <div class="tech-tags" style="margin-bottom:1rem;">${p.tech.map(t => `<span>${t}</span>`).join('')}</div>
                 ${videoHtml}
+                ${imgHtml}
+                ${audioHtml}
                 ${featuresHtml}
                 ${resultHtml}
                 ${hasLinks ? `<div class="project-links">${demoHtml}${repoHtml}</div>` : ''}

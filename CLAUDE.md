@@ -20,7 +20,7 @@ docs/           — 设计文档
 
 所有项目信息存储在 `script.js` 顶部的 `projects` 数组中。页面加载时 JS 自动遍历数组渲染卡片。**添加新项目只需在数组中追加对象，无需改 HTML。**
 
-项目对象字段：`name`, `icon`, `desc`, `tech[]`, `features[]`, `result`, `img`, `video`, `demo`, `repo`。其中 `video` 字段支持嵌入 MP4 播放器。
+项目对象字段：`name`, `icon`, `desc`, `tech[]`, `features[]`, `result`, `img`, `video`, `videos[{src,label}]`, `audio`, `demo`, `repo`。其中 `videos` 数组支持多视频展示（带标签），`audio` 支持嵌入 MP3 播放器。
 
 ## 交互逻辑
 
@@ -33,6 +33,15 @@ docs/           — 设计文档
 Hero 渐变：`#fbbf24` → `#f97316` → `#f4726a`
 技术标签：`#fff3e0` 底 + `#e65100` 字
 选中边框/强调色：`#f97316`
+
+## 在线地址
+
+🌐 **https://archer-dan.github.io**（GitHub Pages，推送即自动部署）
+
+## 文字修改指引
+
+- 个人信息（姓名/标题/简介/关于我/联系方式）：改 `index.html`
+- 项目数据（名称/描述/技术/功能/成果/媒体路径）：改 `script.js` 顶部的 `projects` 数组
 
 ## 运行方式
 
