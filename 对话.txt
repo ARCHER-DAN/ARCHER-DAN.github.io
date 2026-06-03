@@ -1,0 +1,463 @@
+好的，我来用一个**电商销售数据分析工具**作为例子，从零开始完整演示如何搭建并部署一个个人项目展示网站。
+
+## 第一步：准备展示素材
+
+假设你的数据分析工具包含以下内容：
+
+| 素材类型 | 具体内容 |
+|---------|---------|
+| 项目名称 | 电商销售数据分析仪表板 |
+| 项目截图 | 运行工具后生成的图表界面截图（2-3张） |
+| 项目描述 | 自动化处理百万级订单数据，生成销售趋势、用户画像、商品排行等可视化报表 |
+| 技术栈 | Python、Pandas、Plotly、Flask |
+| 核心功能 | ① 数据清洗与预处理 ② RFM客户分群 ③ 销售预测 |
+| 项目成果 | 帮助运营团队定位高价值客户，提升营销ROI 25% |
+
+> 💡 **截图怎么来**：运行你的工具，用系统自带截图工具（Windows: Win+Shift+S / Mac: Cmd+Shift+4）截取关键界面，保存为 `.png` 或 `.jpg` 格式。
+
+---
+
+## 第二步：创建展示网站文件
+
+在你的电脑上新建一个文件夹，命名为 `my-portfolio`，在里面创建以下三个文件：
+
+```
+my-portfolio/
+├── index.html      （网页主文件）
+├── style.css       （样式文件）
+└── script.js       （交互文件，可选）
+```
+
+### 📄 index.html（完整代码）
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张三 · 数据分析作品集</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">👨‍💻 张三</a>
+            <div class="nav-links">
+                <a href="#projects">项目</a>
+                <a href="#about">关于</a>
+                <a href="#contact">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 个人简介区 -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>数据分析师 · 张三</h1>
+            <p>3年经验 | 擅长Python/SQL/数据可视化 | 从数据中发现商业价值</p>
+            <a href="#projects" class="btn">查看项目 ↓</a>
+        </div>
+    </header>
+
+    <!-- 项目展示区 -->
+    <section id="projects" class="projects">
+        <h2 class="section-title">📊 精选项目</h2>
+        
+        <!-- 项目卡片1：电商数据分析工具 -->
+        <div class="project-card">
+            <img src="images/ecommerce-dashboard.png" alt="电商销售数据分析仪表板截图" class="project-img">
+            <div class="project-info">
+                <h3>电商销售数据分析仪表板</h3>
+                <p class="project-desc">
+                    自动化处理百万级订单数据，生成销售趋势、用户画像、商品排行等可视化报表。
+                    支持多维度筛选和交互式图表，帮助运营团队快速定位问题。
+                </p>
+                <div class="tech-tags">
+                    <span>Python</span>
+                    <span>Pandas</span>
+                    <span>Plotly</span>
+                    <span>Flask</span>
+                </div>
+                <div class="project-features">
+                    <strong>✨ 核心功能：</strong>
+                    <ul>
+                        <li>数据清洗与异常检测（自动处理缺失值/重复值）</li>
+                        <li>RFM客户价值分群模型</li>
+                        <li>未来30天销售额预测（ARIMA算法）</li>
+                    </ul>
+                </div>
+                <div class="project-result">
+                    📈 成果：帮助运营团队定位高价值客户，营销ROI提升25%
+                </div>
+                <div class="project-links">
+                    <!-- 如果没有线上demo，可以不写链接 -->
+                    <!-- <a href="#">🔗 在线演示</a> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 项目卡片2：你可以继续添加更多项目 -->
+        <!-- <div class="project-card">...</div> -->
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2 class="section-title">🧑‍💻 关于我</h2>
+            <p>我是一名热爱数据的数据分析师，擅长用Python和SQL从海量数据中提取洞察。</p>
+            <p>相信数据会说话，每一个数字背后都藏着商业机会。</p>
+        </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <footer id="contact">
+        <h2 class="section-title">📧 联系我</h2>
+        <div class="contact-links">
+            <a href="mailto:zhangsan@example.com">📧 zhangsan@example.com</a>
+            <a href="#" target="_blank">💼 LinkedIn</a>
+            <a href="#" target="_blank">🐙 GitHub</a>
+        </div>
+        <p class="copyright">© 2026 张三 | 作品集展示</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+### 🎨 style.css（完整代码）
+
+```css
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f7fb;
+    color: #1a1a2e;
+    line-height: 1.6;
+}
+
+/* 导航栏 */
+nav {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #1a1a2e;
+}
+
+.nav-links a {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #4a5568;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: #667eea;
+}
+
+/* 个人简介区 */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 5rem 2rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    background: white;
+    color: #667eea;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/* 项目展示区 */
+.projects {
+    max-width: 1000px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #1a1a2e;
+}
+
+.project-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 3rem;
+    transition: transform 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    background: #e2e8f0;
+}
+
+.project-info {
+    padding: 1.8rem;
+}
+
+.project-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #1a1a2e;
+}
+
+.project-desc {
+    color: #4a5568;
+    margin-bottom: 1rem;
+}
+
+.tech-tags span {
+    display: inline-block;
+    background: #e9d8fd;
+    color: #6b46c1;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-features {
+    background: #f7fafc;
+    padding: 1rem;
+    border-radius: 12px;
+    margin: 1rem 0;
+}
+
+.project-features ul {
+    margin-left: 1.5rem;
+    margin-top: 0.3rem;
+}
+
+.project-result {
+    background: #e6fffa;
+    color: #234e52;
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-weight: 500;
+}
+
+.project-links a {
+    display: inline-block;
+    margin-right: 1.5rem;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.project-links a:hover {
+    text-decoration: underline;
+}
+
+/* 关于我 */
+.about {
+    background: white;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about p {
+    margin-bottom: 1rem;
+    color: #4a5568;
+}
+
+/* 页脚 */
+footer {
+    background: #1a1a2e;
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.contact-links a {
+    color: #a0aec0;
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.2s;
+}
+
+.contact-links a:hover {
+    color: white;
+}
+
+.copyright {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .project-info {
+        padding: 1.2rem;
+    }
+}
+```
+
+### 📜 script.js（可选）
+
+```javascript
+// 平滑滚动（点击导航链接时平滑滚动到对应区域）
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+// 页面加载完成后的控制台问候
+console.log('作品集网站已加载 🚀');
+```
+
+---
+
+## 第三步：放入截图图片
+
+1. 在 `my-portfolio` 文件夹内，新建一个 `images` 文件夹
+2. 将你的工具截图放入，命名为 `ecommerce-dashboard.png`
+3. 如果暂时没有截图，可以用占位图测试：访问 [placeholder.com](https://placeholder.com) 生成临时图片
+
+最终文件夹结构：
+```
+my-portfolio/
+├── index.html
+├── style.css
+├── script.js
+└── images/
+    └── ecommerce-dashboard.png
+```
+
+---
+
+## 第四步：本地测试
+
+双击 `index.html` 文件，用浏览器打开，检查：
+- 排版是否正常
+- 图片是否显示
+- 导航点击是否平滑滚动
+
+---
+
+## 第五步：部署到 GitHub Pages（推荐）
+
+### 1. 注册/登录 GitHub
+访问 [github.com](https://github.com)，注册账号（已有则登录）
+
+### 2. 创建仓库
+- 点击右上角 **+** → **New repository**
+- Repository name 输入：`你的用户名.github.io`（例如 `zhangsan.github.io`）
+- 选择 **Public**
+- 点击 **Create repository**
+
+### 3. 上传文件
+
+**方法一：网页直接上传（最简单）**
+- 在仓库页面点击 **Add file** → **Upload files**
+- 把 `my-portfolio` 文件夹里的所有文件（index.html, style.css, script.js, images文件夹）拖进去
+- 滚动到底部，点击 **Commit changes**
+
+**方法二：命令行上传**
+```bash
+# 在 my-portfolio 文件夹内打开终端，运行：
+git init
+git add .
+git commit -m "我的数据分析作品集"
+git branch -M main
+git remote add origin https://github.com/你的用户名/你的用户名.github.io.git
+git push -u origin main
+```
+
+### 4. 启用 Pages
+- 进入仓库 **Settings** → 左侧菜单 **Pages**
+- 在 **Branch** 下选择 `main` 分支，`/ (root)` 文件夹
+- 点击 **Save**
+- 等待1-2分钟，访问 `https://你的用户名.github.io` 即可看到你的作品集网站！
+
+---
+
+## 最终效果预览
+
+访问 `https://你的用户名.github.io`，会看到一个：
+- 紫色渐变背景的个人简介区
+- 完整的项目卡片（含截图、描述、技术标签、核心功能、成果）
+- 关于我和联系方式区域
+
+## 下一步可以做的事
+
+1. **添加更多项目**：复制项目卡片代码，替换内容即可
+2. **添加在线演示链接**：如果你的工具有线上 demo 网址，在 `project-links` 区域添加 `<a>` 标签
+3. **绑定自定义域名**：在 Settings → Pages 中填写你的域名
+4. **优化移动端显示**：CSS 已包含基础响应式，可根据需要微调
